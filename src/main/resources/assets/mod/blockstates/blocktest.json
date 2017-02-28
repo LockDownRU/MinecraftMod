@@ -1,0 +1,17 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "textures": { },
+    "model": "orientable"
+  },
+  "variants": {
+    "normal": [{
+      "textures": {
+        "top": "mod:blocks/testblock_side",
+        "side": "mod:blocks/testblock_side",
+        "front": "mod:blocks/testblock_side",
+        "bottom": "mod:blocks/testblock_side"
+      }
+    }]
+  }
+}
