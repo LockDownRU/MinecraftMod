@@ -1,14 +1,12 @@
 {
   "forge_marker": 1,
   "defaults": {
-    "textures": { },
-    "model": "mod:blocktesttile",
+    "model": "mod:blocktesttile.obj",
     "custom": { "flip-v": true },
-    "transform" : "forge:default-block"
+    "transform": "forge:default-block"
   },
   "variants": {
-    "normal": [{
-
-    }]
+    "normal": [{}],
+    "inventory": [{}]
   }
 }

@@ -34,7 +34,7 @@ public class Constants {
     public enum ModBlock
     {
         BLOCKTEST("BlockTest"),
-        BLOCKTESTTILE("BlockTestTile");
+        BLOCKTESTTILE("blocktesttile");
 
         @Getter
         private final String regName;
