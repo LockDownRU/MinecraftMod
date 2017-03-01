@@ -6,6 +6,7 @@ import name.lockdown.mod.api.Constants;
 import name.lockdown.mod.client.IVariantProvider;
 import name.lockdown.mod.tile.TileTestTile;
 import net.minecraft.block.Block;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.tileentity.TileEntity;
@@ -14,6 +15,8 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 
@@ -26,7 +29,7 @@ public class BlockTestTile extends Block implements IVariantProvider {
 
     public BlockTestTile()
     {
-        super(Material.ROCK);
+        super(Material.IRON);
 
         setUnlocalizedName(Constants.Mod.MODID + ".blocktesttile");
         setCreativeTab(Mod.tabMod);
@@ -35,18 +38,15 @@ public class BlockTestTile extends Block implements IVariantProvider {
         setHarvestLevel("pickaxe", 1);
     }
 
+    @Override
+    public boolean isOpaqueCube(IBlockState state) { return false; }
 
     @Override
-    public boolean isNormalCube(IBlockState state, IBlockAccess world, BlockPos pos)
-    {
-        return false;
-    }
+    public boolean isFullCube(IBlockState state) { return false; }
 
     @Override
-    public EnumBlockRenderType getRenderType(IBlockState state)
-    {
-        return EnumBlockRenderType.MODEL;
-    }
+    public boolean causesSuffocation(IBlockState state) { return false; }
+
 
     @Override
     public boolean hasTileEntity(IBlockState state) {
