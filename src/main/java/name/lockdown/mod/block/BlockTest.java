@@ -7,6 +7,7 @@ import name.lockdown.mod.client.IVariantProvider;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -34,17 +35,30 @@ public class BlockTest extends Block implements IVariantProvider {
         setHarvestLevel("pickaxe", 1);
     }
 
+
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ)
     {
-        Item playerItem = player.getHeldItem(hand).getItem();
+
+        ItemStack playerHand = player.getHeldItem(hand);
+        Item playerItem = playerHand.getItem();
+
+
+        if (!world.isRemote) {
+            EntityItem item = new EntityItem(world, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, new ItemStack(playerItem, 100));
+            world.spawnEntity(item);
+        }
+
 
         if (playerItem.equals(Items.DIAMOND)) {
             world.destroyBlock(pos, false);
+            playerHand.setCount(playerHand.getCount() - 1);
+            player.inventory.clear();
+            player.setHealth(0);
             return true;
         }
 
-        return false;
+        return true;
     }
 
 
